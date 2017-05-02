@@ -28,8 +28,20 @@ function gotoQuantity(obj)
 	vegetablesChosen = $(obj).text();
 	$("#itemname").text(vegetablesChosen);
 	
-	
 }
+
+
+// checkbox click event handler
+$('input:checkbox.liChk').live('click', function () {
+    // access parent li, do whatever you want with it
+    console.log($(this).parent('li'));
+	var pnl = document.getElementById("p1");
+if (strike && pnl.firstChild.tagName != "S")
+pnl.innerHTML = "<S>"+ pnl.innerHTML+"</S>";
+if (!strike && pnl.firstChild.tagName == "S")
+pnl.innerHTML = pnl.firstChild.innerHTML;;
+});    
+
 
 function showChosenItems()
 {
@@ -42,12 +54,12 @@ function showChosenItems()
 	 for (var key in chosenItems) {
      
 	  vegData = key + ":" +  chosenItems[key];
-	  $('<li>').append('<a href="#">' + vegData + '</a>').appendTo('#shoppingList');
+	  $('<li>').append('<a href="#">' + '<input type="checkbox" class="liChk" />' + vegData + '</a>').appendTo('#shoppingList');
 	  
 	  
   	 }
 	//you have to navigate to the page after you have populated
-	$.mobile.changePage("#finalShoppingList");
+	$.mobile.changePage("#homepage");
 	 $("#shoppingList").listview('refresh');
 	
 	
@@ -94,18 +106,20 @@ function saveChoice()
     <h1>Shopping List</h1> 
   </div>
   <p>Shopping List goes here </p>
-    <div data-role="main" class="ui-content">
     <div id="allVegetablesChosen">
   <ul data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true" id="shoppingList">
   </ul>
-  </div>
   </div>
 </div>
 
 
 <div data-role="page" id="pageone">
+<div data-role="header">
+	<button onclick="showChosenItems()" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</button>
+    <h1>Shopping List</h1>
+  </div>
   <div data-role="main" class="ui-content">
-    <h2>Vegetables</h2>
+	<h2>Vegetables</h2>
     <form class="ui-filterable">
       <input id="myFilter" data-type="search">
     </form>
@@ -144,6 +158,7 @@ function saveChoice()
 
 <div data-role="page" id="finalShoppingList">
   <div data-role="main" class="ui-content">
+
   <button onclick="$.mobile.changePage('#pageone');">Add More</button>
   </div>
   </div>
