@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<title> Shopping List Homepage </title>
+<h1> </h1>
+
+</head>
+<body>
+<div data-role="page" id="homepage">
+  <div data-role="header">
+    <h1>Shopping List Homepage</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>buttons go here</p>
+    <a href="#pagetwo" class="ui-btn ui-icon-search ui-btn-icon-left">Find Item </a>
+  </div>
+   <form>
+ Item name: <input type = "text" name = "itemname" placeholder = "Enter the name of item">
+  <label for="amount">Amount:</label>
+      <input type="range" name="amount" id="amount" value="1" min="0" max="10">
+	  <button type="submit" class="ui-btn ui-icon-plus ui-btn-icon-left">Add</button>
+</form>
+<div data-role="footer">
+    <h1>Shopping List</h1> 
+  </div>
+  <p>Shopping List goes here </p>
+  
+</div>
+
+ 
+ 
+<div data-role="page" id="pagetwo">
+  <div data-role="header">
+    <h1>Second page</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p>This is Page Two. If you click on the link below, it will take you to Page One.</p>
+    <a href="#homepage" class="ui-btn ui-icon-home ui-btn-icon-left">Home Button</a>
+  </div>
+  <div data-role="main" class="ui-content">
+    <h2>shopping Items</h2>
+    <form class="ui-filterable">
+      <input id="myFilter" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true">
+      <li><a href="#">Adele</a></li>
+      <li><a href="#">Agnes</a></li>
+    </ul>
+  </div>
+</div> 
+
+</body>
+</html>
+
