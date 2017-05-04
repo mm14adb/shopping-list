@@ -18,6 +18,8 @@ $( document ).ready(function() {
 	// and retrieved in the format JSON.parse(obj)
     var q = localStorage.getItem("previousList");
 	if (q!=null) chosenItems = JSON.parse(q);
+	$(document).on('click', '.delete', deletelistitem);
+	$(document).on('click', '.purchased', purchase);
 });
 
 
@@ -30,18 +32,21 @@ function gotoQuantity(obj)
 	
 }
 
+function purchase(){
+	if ($(this).parent().css('textDecoration') === 'line-through')
+	{
+		$(this).parent().css('textDecoration', 'none');
+	}
+	else
+	{
+	$(this).parent().css('textDecoration', 'line-through');
+	}
+	
+}
 
-// checkbox click event handler
-$('input:checkbox.liChk').live('click', function () {
-    // access parent li, do whatever you want with it
-    console.log($(this).parent('li'));
-	var pnl = document.getElementById("p1");
-if (strike && pnl.firstChild.tagName != "S")
-pnl.innerHTML = "<S>"+ pnl.innerHTML+"</S>";
-if (!strike && pnl.firstChild.tagName == "S")
-pnl.innerHTML = pnl.firstChild.innerHTML;;
-});    
-
+function deletelistitem(){
+	$(this).parent().remove();
+}
 
 function showChosenItems()
 {
@@ -54,7 +59,7 @@ function showChosenItems()
 	 for (var key in chosenItems) {
      
 	  vegData = key + ":" +  chosenItems[key];
-	  $('<li>').append('<a href="#">' + '<input type="checkbox" class="liChk" />' + vegData + '</a>').appendTo('#shoppingList');
+	  $('<li>').append( '<a href="#">' +  vegData + '</a>' + '<input type="checkbox" class="purchased" />' + '<button class="delete""ui-btn ui-btn-inline ui-mini">Delete</button>' ).appendTo('#shoppingList');
 	  
 	  
   	 }
